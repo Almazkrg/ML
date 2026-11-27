@@ -21,3 +21,22 @@ Swagger UI: http://127.0.0.1:8000/docs
 
 Example body:
     {"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}
+
+## MLflow (experiment tracking & model registry)
+    python train.py
+    mlflow ui --backend-store-uri sqlite:///mlflow.db
+
+Open http://127.0.0.1:5000 (experiment `iris-classification`, model `iris-rf-model`).
+
+## Streamlit frontend
+    uvicorn main:app --reload
+    streamlit run app.py
+
+## Everything with Docker Compose
+    docker compose build
+    docker compose run --rm train
+    docker compose up -d
+
+- API and home page: http://localhost:8000
+- Streamlit: http://localhost:8501
+- MLflow: http://localhost:5000

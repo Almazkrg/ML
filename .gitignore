@@ -1,3 +1,9 @@
 __pycache__/
 *.pyc
 .venv/
+echo "*.bak" >> .gitignoremlruns/
+mlartifacts/
+*.bak
+mlflow.db
+mlruns/
+mlartifacts/

@@ -1,0 +1,36 @@
+services:
+  api:
+    build: .
+    image: ml-iris
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+  streamlit:
+    image: ml-iris
+    command: streamlit run app.py --server.address 0.0.0.0 --server.port 8501 --server.headless true
+    environment:
+      - API_URL=http://api:8000/predict
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    depends_on:
+      - api
+
+  mlflow:
+    image: ml-iris
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:////app/mlflow.db
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+
+  train:
+    image: ml-iris
+    command: python train.py
+    volumes:
+      - .:/app
+    profiles: ["train"]

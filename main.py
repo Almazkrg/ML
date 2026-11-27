@@ -1,7 +1,7 @@
 import joblib
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
-
 app = FastAPI(title="ML API", description="Iris classification model served with FastAPI")
 
 artifact = joblib.load("model.joblib")
@@ -17,9 +17,15 @@ class IrisFeatures(BaseModel):
 
 
 @app.get("/")
-def root():
+def root(request: Request):
+    if "text/html" in request.headers.get("accept", ""):
+        return FileResponse("home.html")
     return {"message": "ML API is running"}
 
+
+@app.get("/ui", include_in_schema=False)
+def ui():
+    return FileResponse("index.html")
 
 @app.post("/predict")
 def predict(features: IrisFeatures):

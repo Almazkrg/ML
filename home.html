@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ML Iris Project</title>
+  <style>
+    body { font-family: sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+    .card { display: block; padding: 16px; margin: 12px 0; border: 1px solid #ccc;
+            border-radius: 8px; text-decoration: none; color: inherit; }
+    .card:hover { background: #f3f6fb; }
+    .card h3 { margin: 0 0 4px; }
+    .card p { margin: 0; color: #555; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>ML Iris Project</h1>
+  <p>ML API is running. Choose a page:</p>
+
+  <a class="card" href="/ui"><h3>Predict</h3><p>Enter flower measurements and get a prediction</p></a>
+  <a class="card" href="/docs"><h3>API docs (Swagger)</h3><p>Test the endpoints in the browser</p></a>
+  <a class="card" href="/redoc"><h3>API docs (ReDoc)</h3><p>Read-only API documentation</p></a>
+  <a class="card" href="http://127.0.0.1:5000" target="_blank"><h3>MLflow</h3><p>Experiments and model registry (port 5000)</p></a>
+<a class="card" href="http://localhost:8501" target="_blank"><h3>Streamlit</h3><p>Streamlit frontend (port 8501)</p></a>
+</body>
+</html>
